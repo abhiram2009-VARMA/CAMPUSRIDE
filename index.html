@@ -1,0 +1,1386 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusRide | Shuttle Seat Request</title>
+
+    <style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f8f6;
+    color: #26352e;
+    line-height: 1.6;
+}
+
+/* NAVIGATION */
+
+.navbar {
+    background: white;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 34px;
+}
+
+.logo h2 {
+    color: #167447;
+    font-size: 21px;
+}
+
+.logo small {
+    color: #829087;
+    font-size: 11px;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #45564b;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #15965c;
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.avatar {
+    background: #d9f4e5;
+    color: #137847;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+
+/* MAIN CONTAINER */
+
+.container {
+    width: 88%;
+    max-width: 1250px;
+    margin: auto;
+}
+
+section {
+    scroll-margin-top: 95px;
+}
+
+/* HERO */
+
+.hero {
+    margin-top: 35px;
+    background: linear-gradient(120deg, #103f2c, #218453);
+    min-height: 360px;
+    border-radius: 20px;
+    padding: 55px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.welcome {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #b9e9c9;
+    font-weight: 700;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 50px);
+    line-height: 1.2;
+    margin: 15px 0;
+}
+
+.hero h1 span {
+    color: #a4e8bd;
+}
+
+.hero p {
+    color: #d9eee0;
+    max-width: 480px;
+    margin-bottom: 25px;
+    font-size: 15px;
+}
+
+.primary-btn {
+    display: inline-block;
+    background: #17985c;
+    color: white;
+    padding: 13px 23px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    background: #117445;
+    transform: translateY(-2px);
+}
+
+.hero-image {
+    text-align: center;
+    width: 300px;
+    min-width: 200px;
+}
+
+.bus-circle {
+    width: 180px;
+    height: 180px;
+    margin: auto;
+    background: rgba(255,255,255,0.13);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 95px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.hero-image h3 {
+    margin-top: 20px;
+}
+
+.hero-image p {
+    margin: 5px auto;
+    font-size: 13px;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* SECTIONS */
+
+.section {
+    margin-top: 65px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.small-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #19965a;
+    font-weight: 800;
+}
+
+.section-heading h2 {
+    font-size: 27px;
+    margin: 5px 0;
+    color: #203b2d;
+}
+
+.section-heading p {
+    font-size: 13px;
+    color: #819087;
+}
+
+/* DASHBOARD CARDS */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 24px;
+    border-radius: 13px;
+    border: 1px solid #e8eee9;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.stat-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.purple { background: #eee8ff; }
+.orange { background: #fff0d9; }
+.green { background: #def6e8; }
+.red { background: #ffe5e5; }
+
+.stat-card p {
+    color: #7c8a80;
+    font-size: 13px;
+}
+
+.stat-card h2 {
+    font-size: 30px;
+    margin: 5px 0;
+}
+
+.stat-card small {
+    color: #9ba79e;
+    font-size: 11px;
+}
+
+/* FORM */
+
+.form-section {
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    border: 1px solid #e8eee9;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #344a3b;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+.filter-bar input,
+.filter-bar select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #dce6df;
+    background: #fbfdfb;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    color: #334b3d;
+    transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.filter-bar input:focus,
+.filter-bar select:focus {
+    border-color: #19965a;
+    box-shadow: 0 0 0 3px rgba(25,150,90,0.1);
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.secondary-btn {
+    background: #edf3ef;
+    color: #45614e;
+    border: none;
+    border-radius: 8px;
+    padding: 13px 22px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.secondary-btn:hover {
+    background: #dceae0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* SEARCH AND FILTER */
+
+.filter-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.filter-bar input {
+    flex: 1;
+}
+
+/* TABLE */
+
+.table-wrapper {
+    background: white;
+    border-radius: 13px;
+    overflow-x: auto;
+    border: 1px solid #e8eee9;
+}
+
+table {
+    width: 100%;
+    min-width: 800px;
+    border-collapse: collapse;
+}
+
+th {
+    background: #f0f7f2;
+    color: #52665a;
+    font-size: 12px;
+    text-align: left;
+    padding: 17px;
+}
+
+td {
+    padding: 16px;
+    border-bottom: 1px solid #edf1ee;
+    font-size: 12px;
+    color: #56675c;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.student-name {
+    font-weight: 700;
+    color: #284a35;
+}
+
+.student-id {
+    font-size: 11px;
+    color: #99a69d;
+}
+
+.status {
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.status-Pending {
+    background: #fff1d8;
+    color: #b77915;
+}
+
+.status-Approved {
+    background: #dcf5e5;
+    color: #168148;
+}
+
+.status-Rejected {
+    background: #ffe3e3;
+    color: #c33c3c;
+}
+
+.action-btn {
+    padding: 7px 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 2px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.edit-btn {
+    background: #e2efff;
+    color: #2769aa;
+}
+
+.delete-btn {
+    background: #ffe7e7;
+    color: #c43c3c;
+}
+
+.status-select {
+    padding: 6px;
+    border: 1px solid #dce6df;
+    border-radius: 5px;
+    font-size: 11px;
+    margin-top: 5px;
+    max-width: 120px;
+}
+
+.empty-message {
+    padding: 50px 15px;
+    text-align: center;
+    color: #87948b;
+}
+
+.empty-message div {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.empty-message h3 {
+    color: #45614e;
+}
+
+.empty-message p {
+    font-size: 12px;
+}
+
+footer {
+    margin-top: 80px;
+    background: #123e2c;
+    color: white;
+    text-align: center;
+    padding: 35px;
+}
+
+footer h3 {
+    margin-bottom: 8px;
+}
+
+footer p {
+    font-size: 12px;
+    color: #c2d8c9;
+    margin-top: 5px;
+}
+
+/* NOTIFICATION */
+
+.toast {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #173f2d;
+    color: white;
+    padding: 15px 22px;
+    border-radius: 9px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 200;
+    font-size: 13px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.error {
+    background: #b83232;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 900px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        padding: 35px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 92%;
+    }
+
+    .navbar {
+        padding: 12px 4%;
+    }
+
+    nav {
+        gap: 14px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .nav-user span {
+        display: none;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 35px 20px;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-image {
+        margin-top: 35px;
+    }
+
+    .bus-circle {
+        width: 140px;
+        height: 140px;
+        font-size: 75px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-card h2 {
+        font-size: 24px;
+    }
+
+    .section-heading h2 {
+        font-size: 22px;
+    }
+
+    .form-section {
+        padding: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: span 1;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+
+    footer {
+        padding: 30px 15px;
+    }
+}
+
+</style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <span class="logo-icon">🚌</span>
+        <div>
+            <h2>CampusRide</h2>
+            <small>Campus Shuttle System</small>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#request">Book Seat</a>
+        <a href="#requests">My Requests</a>
+    </nav>
+
+    <div class="nav-user">
+        <span>Student Portal</span>
+        <div class="avatar">S</div>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- HOME SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="welcome">WELCOME TO CAMPUSRIDE</span>
+
+            <h1>Your Campus Journey,<br>
+                <span>Made Easier.</span>
+            </h1>
+
+            <p>
+                Request your shuttle seat, manage your travel details,
+                and track your booking status in one place.
+            </p>
+
+            <a href="#request" class="primary-btn">
+                Request a Seat →
+            </a>
+        </div>
+
+        <div class="hero-image">
+            <div class="bus-circle">🚌</div>
+            <h3>Smart Campus Transport</h3>
+            <p>Safe · Simple · Convenient</p>
+        </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="section" id="dashboard">
+
+        <div class="section-heading">
+            <div>
+                <span class="small-title">OVERVIEW</span>
+                <h2>Request Dashboard</h2>
+                <p>Overview of all shuttle seat requests.</p>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon purple">📋</div>
+                <p>Total Requests</p>
+                <h2 id="totalCount">0</h2>
+                <small>All seat requests</small>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">⏳</div>
+                <p>Pending Requests</p>
+                <h2 id="pendingCount">0</h2>
+                <small>Waiting for approval</small>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">✓</div>
+                <p>Approved Requests</p>
+                <h2 id="approvedCount">0</h2>
+                <small>Successfully approved</small>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon red">✕</div>
+                <p>Rejected Requests</p>
+                <h2 id="rejectedCount">0</h2>
+                <small>Not approved</small>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- REQUEST FORM -->
+    <section class="section form-section" id="request">
+
+        <div class="section-heading">
+            <div>
+                <span class="small-title">TRAVEL BOOKING</span>
+                <h2 id="formHeading">Request Your Shuttle Seat</h2>
+                <p>Fill in your details to request a campus shuttle seat.</p>
+            </div>
+        </div>
+
+        <form id="requestForm">
+
+            <input type="hidden" id="editId">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="studentName">Student Name *</label>
+                    <input type="text" id="studentName"
+                        placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentId">Student ID *</label>
+                    <input type="text" id="studentId"
+                        placeholder="Example: 12345678" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Department *</label>
+                    <select id="department" required>
+                        <option value="">Select Department</option>
+                        <option>CSE</option>
+                        <option>ECE</option>
+                        <option>EEE</option>
+                        <option>Mechanical</option>
+                        <option>Civil</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="route">Shuttle Route *</label>
+                    <select id="route" required>
+                        <option value="">Select Route</option>
+                        <option>Route A - Main Gate</option>
+                        <option>Route B - City Center</option>
+                        <option>Route C - Railway Station</option>
+                        <option>Route D - Bus Stand</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickup">Pickup Location *</label>
+                    <input type="text" id="pickup"
+                        placeholder="Enter pickup point" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="travelDate">Travel Date *</label>
+                    <input type="date" id="travelDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="travelTime">Departure Time *</label>
+                    <select id="travelTime" required>
+                        <option value="">Select Time</option>
+                        <option>07:00 AM</option>
+                        <option>08:00 AM</option>
+                        <option>09:00 AM</option>
+                        <option>10:00 AM</option>
+                        <option>04:00 PM</option>
+                        <option>05:00 PM</option>
+                        <option>06:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="seats">Number of Seats *</label>
+                    <input type="number" id="seats"
+                        min="1" max="4" value="1" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="purpose">Purpose of Travel</label>
+                    <textarea id="purpose"
+                        placeholder="Enter your travel purpose..."
+                        rows="3"></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="primary-btn" id="submitBtn">
+                    Submit Request →
+                </button>
+
+                <button type="reset" class="secondary-btn" id="resetBtn">
+                    Clear Form
+                </button>
+
+                <button type="button" class="secondary-btn hidden"
+                    id="cancelEdit">
+                    Cancel Edit
+                </button>
+            </div>
+
+        </form>
+    </section>
+
+    <!-- REQUEST MANAGEMENT -->
+    <section class="section" id="requests">
+
+        <div class="section-heading">
+            <div>
+                <span class="small-title">MANAGEMENT</span>
+                <h2>Shuttle Requests</h2>
+                <p>Search, update and manage your seat requests.</p>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+
+            <input type="search" id="searchInput"
+                placeholder="🔍 Search by student name or ID...">
+
+            <select id="statusFilter">
+                <option value="All">All Status</option>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+            </select>
+
+            <select id="routeFilter">
+                <option value="All">All Routes</option>
+                <option>Route A - Main Gate</option>
+                <option>Route B - City Center</option>
+                <option>Route C - Railway Station</option>
+                <option>Route D - Bus Stand</option>
+            </select>
+
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Route</th>
+                        <th>Travel Date</th>
+                        <th>Seats</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="requestTable">
+                </tbody>
+            </table>
+
+            <div id="emptyMessage" class="empty-message">
+                <div>🚌</div>
+                <h3>No requests found</h3>
+                <p>Submit your first shuttle seat request to get started.</p>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <h3>🚌 CampusRide</h3>
+    <p>Campus Shuttle Seat Request System</p>
+    <p> CSE326 Student Project | 2026</p>
+</footer>
+
+<!-- NOTIFICATION -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+
+// =====================================
+// CAMPUSRIDE - SHUTTLE REQUEST SYSTEM
+// =====================================
+
+const form = document.getElementById("requestForm");
+const requestTable = document.getElementById("requestTable");
+const searchInput = document.getElementById("searchInput");
+const statusFilter = document.getElementById("statusFilter");
+const routeFilter = document.getElementById("routeFilter");
+const toast = document.getElementById("toast");
+
+let requests = JSON.parse(
+    localStorage.getItem("campusShuttleRequests") || "[]"
+);
+
+// Save records in browser storage
+function saveRequests() {
+    localStorage.setItem(
+        "campusShuttleRequests",
+        JSON.stringify(requests)
+    );
+}
+
+// Safely display user-entered text in HTML
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[char]);
+}
+
+// Show notification
+function showToast(message, type = "success") {
+    toast.textContent = message;
+    toast.className = "toast show";
+
+    if (type === "error") {
+        toast.classList.add("error");
+    }
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(() => {
+        toast.className = "toast";
+    }, 3000);
+}
+
+// Set minimum travel date to today
+const today = new Date();
+const localToday = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, "0"),
+    String(today.getDate()).padStart(2, "0")
+].join("-");
+
+document.getElementById("travelDate").min = localToday;
+
+// =====================================
+// DASHBOARD STATISTICS
+// =====================================
+
+function updateDashboard() {
+
+    document.getElementById("totalCount").textContent =
+        requests.length;
+
+    document.getElementById("pendingCount").textContent =
+        requests.filter(r => r.status === "Pending").length;
+
+    document.getElementById("approvedCount").textContent =
+        requests.filter(r => r.status === "Approved").length;
+
+    document.getElementById("rejectedCount").textContent =
+        requests.filter(r => r.status === "Rejected").length;
+}
+
+// =====================================
+// DISPLAY REQUESTS
+// =====================================
+
+function displayRequests() {
+
+    const search = searchInput.value.toLowerCase().trim();
+    const selectedStatus = statusFilter.value;
+    const selectedRoute = routeFilter.value;
+
+    const filteredRequests = requests.filter(request => {
+
+        const matchesSearch =
+            request.name.toLowerCase().includes(search) ||
+            request.studentId.toLowerCase().includes(search);
+
+        const matchesStatus =
+            selectedStatus === "All" ||
+            request.status === selectedStatus;
+
+        const matchesRoute =
+            selectedRoute === "All" ||
+            request.route === selectedRoute;
+
+        return matchesSearch && matchesStatus && matchesRoute;
+    });
+
+    requestTable.innerHTML = "";
+
+    document.getElementById("emptyMessage").style.display =
+        filteredRequests.length === 0 ? "block" : "none";
+
+    filteredRequests.forEach(request => {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>
+                <div class="student-name">
+                    ${escapeHTML(request.name)}
+                </div>
+                <div class="student-id">
+                    ID: ${escapeHTML(request.studentId)}
+                    · ${escapeHTML(request.department)}
+                </div>
+            </td>
+
+            <td>${escapeHTML(request.route)}</td>
+
+            <td>${escapeHTML(request.date)}</td>
+
+            <td>${escapeHTML(request.seats)}</td>
+
+            <td>
+                <span class="status status-${request.status}">
+                    ${request.status}
+                </span>
+
+                <br>
+
+                <select class="status-select"
+                    data-action="status"
+                    data-id="${request.id}"
+                    aria-label="Update status for ${escapeHTML(request.name)}">
+
+                    <option value="Pending"
+                        ${request.status === "Pending" ? "selected" : ""}>
+                        Pending
+                    </option>
+
+                    <option value="Approved"
+                        ${request.status === "Approved" ? "selected" : ""}>
+                        Approved
+                    </option>
+
+                    <option value="Rejected"
+                        ${request.status === "Rejected" ? "selected" : ""}>
+                        Rejected
+                    </option>
+
+                </select>
+            </td>
+
+            <td>
+                <button class="action-btn edit-btn"
+                    data-action="edit"
+                    data-id="${request.id}">
+                    Edit
+                </button>
+
+                <button class="action-btn delete-btn"
+                    data-action="delete"
+                    data-id="${request.id}">
+                    Delete
+                </button>
+            </td>
+        `;
+
+        requestTable.appendChild(row);
+    });
+
+    updateDashboard();
+}
+
+// =====================================
+// ADD OR UPDATE REQUEST
+// =====================================
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const editId = document.getElementById("editId").value;
+
+    const name = document.getElementById("studentName").value.trim();
+    const studentId = document.getElementById("studentId").value.trim();
+    const department = document.getElementById("department").value;
+    const route = document.getElementById("route").value;
+    const pickup = document.getElementById("pickup").value.trim();
+    const date = document.getElementById("travelDate").value;
+    const time = document.getElementById("travelTime").value;
+    const seats = Number(document.getElementById("seats").value);
+    const purpose = document.getElementById("purpose").value.trim();
+
+    // Input validation
+    if (
+        !name || !studentId || !department ||
+        !route || !pickup || !date || !time
+    ) {
+        showToast("Please fill in all required fields.", "error");
+        return;
+    }
+
+    if (name.length < 2 || name.length > 60) {
+        showToast("Enter a valid student name.", "error");
+        return;
+    }
+
+    if (studentId.length > 30) {
+        showToast("Student ID is too long.", "error");
+        return;
+    }
+
+    if (!Number.isInteger(seats) || seats < 1 || seats > 4) {
+        showToast("You can request between 1 and 4 seats.", "error");
+        return;
+    }
+
+    if (date < localToday) {
+        showToast("Please select today or a future date.", "error");
+        return;
+    }
+
+    // Check duplicate student ID and date for new requests
+    const duplicate = requests.some(request =>
+        request.studentId.toLowerCase() === studentId.toLowerCase() &&
+        request.date === date &&
+        request.id !== editId
+    );
+
+    if (duplicate) {
+        showToast("A request already exists for this student on this date.", "error");
+        return;
+    }
+
+    const requestData = {
+        name,
+        studentId,
+        department,
+        route,
+        pickup,
+        date,
+        time,
+        seats,
+        purpose
+    };
+
+    if (editId) {
+
+        // Update existing record
+        const index = requests.findIndex(r => r.id === editId);
+
+        if (index === -1) {
+            showToast("Request not found.", "error");
+            return;
+        }
+
+        requests[index] = {
+            ...requests[index],
+            ...requestData
+        };
+
+        showToast("Request updated successfully!");
+
+    } else {
+
+        // Add new record
+        const newRequest = {
+            id: Date.now().toString() + Math.random().toString(36).slice(2, 7),
+            ...requestData,
+            status: "Pending"
+        };
+
+        requests.push(newRequest);
+
+        showToast("Seat request submitted successfully!");
+    }
+
+    saveRequests();
+    displayRequests();
+    resetForm();
+
+});
+
+// =====================================
+// RESET FORM
+// =====================================
+
+function resetForm() {
+
+    form.reset();
+
+    document.getElementById("editId").value = "";
+
+    document.getElementById("seats").value = 1;
+
+    document.getElementById("formHeading").textContent =
+        "Request Your Shuttle Seat";
+
+    document.getElementById("submitBtn").textContent =
+        "Submit Request →";
+
+    document.getElementById("cancelEdit").classList.add("hidden");
+
+    document.getElementById("travelDate").min = localToday;
+}
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+    resetForm();
+});
+
+document.getElementById("cancelEdit").addEventListener("click", () => {
+    resetForm();
+});
+
+// =====================================
+// EDIT REQUEST
+// =====================================
+
+function editRequest(id) {
+
+    const request = requests.find(r => r.id === id);
+
+    if (!request) return;
+
+    document.getElementById("editId").value = request.id;
+
+    document.getElementById("studentName").value = request.name;
+    document.getElementById("studentId").value = request.studentId;
+    document.getElementById("department").value = request.department;
+    document.getElementById("route").value = request.route;
+    document.getElementById("pickup").value = request.pickup;
+    document.getElementById("travelDate").value = request.date;
+    document.getElementById("travelTime").value = request.time;
+    document.getElementById("seats").value = request.seats;
+    document.getElementById("purpose").value = request.purpose || "";
+
+    document.getElementById("travelDate").min =
+        request.date < localToday ? request.date : localToday;
+
+    document.getElementById("formHeading").textContent =
+        "Update Shuttle Request";
+
+    document.getElementById("submitBtn").textContent =
+        "Save Changes →";
+
+    document.getElementById("cancelEdit").classList.remove("hidden");
+
+    document.getElementById("request").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+// =====================================
+// DELETE REQUEST
+// =====================================
+
+function deleteRequest(id) {
+
+    const confirmDelete = confirm(
+        "Are you sure you want to delete this request?"
+    );
+
+    if (!confirmDelete) return;
+
+    requests = requests.filter(request => request.id !== id);
+
+    saveRequests();
+    displayRequests();
+
+    showToast("Request deleted successfully!");
+}
+
+// =====================================
+// UPDATE REQUEST STATUS
+// =====================================
+
+function updateStatus(id, newStatus) {
+
+    const request = requests.find(r => r.id === id);
+
+    if (!request) return;
+
+    request.status = newStatus;
+
+    saveRequests();
+    displayRequests();
+
+    showToast("Request status updated to " + newStatus + "!");
+}
+
+// Handle table actions
+requestTable.addEventListener("click", function(event) {
+
+    const button = event.target.closest("button[data-action]");
+
+    if (!button) return;
+
+    const id = button.dataset.id;
+
+    if (button.dataset.action === "edit") {
+        editRequest(id);
+    }
+
+    if (button.dataset.action === "delete") {
+        deleteRequest(id);
+    }
+});
+
+requestTable.addEventListener("change", function(event) {
+
+    if (
+        event.target.matches('select[data-action="status"]')
+    ) {
+        updateStatus(
+            event.target.dataset.id,
+            event.target.value
+        );
+    }
+});
+
+// =====================================
+// SEARCH AND FILTER
+// =====================================
+
+searchInput.addEventListener("input", displayRequests);
+
+statusFilter.addEventListener("change", displayRequests);
+
+routeFilter.addEventListener("change", displayRequests);
+
+// =====================================
+// INITIALIZE WEBSITE
+// =====================================
+
+displayRequests();
+
+console.log("CampusRide Shuttle System Loaded Successfully!");
+
+</script>
+
+</body>
+</html>
